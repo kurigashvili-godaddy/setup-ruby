@@ -166,7 +166,7 @@ export async function bundleInstall(gemfile, lockFile, platform, engine, rubyVer
   // config
   const cachePath = 'vendor/bundle'
   // An absolute path, so it is reliably under $PWD/vendor/bundle, and not relative to the gemfile's directory
-  const bundleCachePath = path.join(process.cwd(), cachePath)
+  const bundleCachePath = process.env.BUNDLE_PATH || path.join(process.cwd(), cachePath)
 
   await exec.exec('bundle', ['config', '--local', 'path', bundleCachePath], envOptions)
 
